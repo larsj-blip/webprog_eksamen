@@ -1,8 +1,6 @@
 const calendarC = {
     props: ["user"],
     template: /*html*/`
-        <div id=""> </div>
-        `,
-    
-
+        <p>This is the mothafuckin calendar </p>
+        `
 }

@@ -1,18 +1,8 @@
 const sidebarC = {
     template: /* html */`
         linker til div. sider i applikasjonen, dropdown til videoer?
-    `,
-    data: function() {return {} },
-    
-}
-
-const sidebarElementC = {
-    props: {},
-    template:/* html */`
-        {{linkname}}
-    `,
-    data: function(){return{}},
-    methods:{},
-    computed:{}
-        
-}
+        <router-link to="/Calendar"> Calendar </router-link>
+        <router-link to="/Lectures"> Lectures </router-link>
+        <router-link to="/Home"> Home </router-link>
+    `
+};
