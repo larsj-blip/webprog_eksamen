@@ -1,8 +1,12 @@
 
-const videoC = {template: 'videos'};
+
 const routes = [
+    { path: '/', component: homeC},
+    { path: '/home', component: homeC },
     { path: '/Calendar', component: calendarC },
-    { path: '/Videos', component: videoC },];
+    { path: '/Admin', component: adminC },
+    { path: '/Login', component: loginC }
+];
 
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
@@ -11,26 +15,27 @@ const router = VueRouter.createRouter({
 
 
 let app = Vue.createApp({
-    template: /* html */`
-
-        <main>
+    template: /*html*/`
+        <div class="container-md">
+        <div id="sidebar" class="col-md-4"> 
+        <sidebarC></sidebarC>
+        </div>
+        <div id="main" class="col-md-8">
             må ha bilde av mor. <br>
             noe tekst, stilisert med boobstrap.
-        </main>
-        <sidebarC></sidebarC>
-        <router-view></router-view>
+            <router-view></router-view>
+        </div>
+
+
     `
-/*     data: function(){
-        return {
-        }
-    } */
 });
 
 app.component("SidebarC", sidebarC)
 /*app.component("SidebarElementC", sidebarElementC)
 app.component("HeaderC", headerC)
-app.component("LoginC", loginC)
-app.component("AdminC", adminC) */
-app.component("CalendarC")
+app.component("LoginC", loginC)*/
+app.component("HomeC", homeC)
+app.component("AdminC", adminC)
+app.component("CalendarC", calendarC)
 app.use(router)
 app.mount("#app");  

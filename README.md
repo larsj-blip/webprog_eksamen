@@ -1,3 +1,4 @@
+referer til https://flask.palletsprojects.com/en/1.1.x/patterns/sqlalchemy/ (?)bruker en in memory database
 # Exam project
 
 - [Exam project](#exam-project)
