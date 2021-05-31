@@ -21,8 +21,4 @@ def load_user(user_id):
 
 
 
-@app.route('/')
-def index(methods=['GET']):
-    return app.send_static_file('index.html')
-
 
