@@ -1,4 +1,5 @@
 referer til https://flask.palletsprojects.com/en/1.1.x/patterns/sqlalchemy/ (?)bruker en in memory database
+https://www.patricksoftwareblog.com/unit-testing-a-flask-application/ ? testing
 # Exam project
 
 - [Exam project](#exam-project)
