@@ -1,33 +1,39 @@
+
 const loginC = {
     template: /*html*/`
-    <form action="/session">
+    <form>
         <label for="username">username</label>
-        <input type="text", id="username", name="username">
+        <input v-model="username" type="text" id="username" name="username"/>
         <label for="passwd">password</label>
-        <input type="password", id="passwd", name="passwd">
-        <button>submit</button>
+        <input v-model="password" type="password" id="passwd" name="passwd"/>
+        <label for="email">email</label>
+        <input v-model="email" type="email" id="email" name="email">
+        <button @:click="log_in">submit</button>
     </form>
     `,
+    data: function(){
+        return{
+            username:"",
+            password:"",
+            email:"",
+            error:false,
+        }
+    },
     methods: {
         log_in: async function() {
-            let username = document.getElementById(username).value;
-            let passwd = document.getElementById(password).value;
-            
-            let response = await fetch("/user", {
+            let response = await fetch("/session", {
                 method:"POST",
                 headers: {
                     "Content-Type" : "application/json"
                 },
-                body: JSON.stringify({username:username, passwd:passwd})
+                body: JSON.stringify({username:this.username, passwd:this.password, email:this.email})
             });
         
-            if (response.status != 200){
-                /* feilmelding, enten feil i backend eller feil med bruker */
+            if (response.status === 200){
+                this.$router.push("/");
                 return
-            }
-        
-            let user = await response.json();
-            /* logikk for å vise brukernavn, kanskje i vue? */
+            };
+            this.error = true
         }
     }
 }
