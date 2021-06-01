@@ -34,6 +34,7 @@ class User(Base, UserMixin):
         return self.admin
 
 class UnauthUser(Base):
+    __tablename__ = 'unauthusers'
     email = Column(String(50), primary_key=True)
     username = Column(String(50), nullable=False)
     password = Column(Text, nullable=False)

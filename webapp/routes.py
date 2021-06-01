@@ -1,21 +1,18 @@
-""" import app """
+from app import app
 from models import User, UnauthUser
 from database import db_session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import jsonify, make_response
 
 
-@app.route('/', method=['GET'])
+@app.route('/', methods=['GET'])
+@app.route('/home', methods=['GET'])
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/home', method=['GET'])
-def index():
-    return app.send_static_file('index.html')
+""" @app.route('/users', methods=['GET']) #get username(???) """
 
-""" @app.route('/users', method=['GET']) #get username(???) """
-
-@app.route('/users', method=['POST']) #create user
+@app.route('/users', methods=['POST']) #create user
 def create_user():
     email = request.form.get(email)
     password = request.form.get(password)
@@ -28,11 +25,11 @@ def create_user():
     response = {'success':False}
     return make_response(jsonify(response, 400))#return json response failed
     
-""" @app.route('/users', method=['PUT']) #update (authorize user /change privilege/ change pass)
+""" @app.route('/users', methods=['PUT']) #update (authorize user /change privilege/ change pass)
 
-@app.route('/users', method=['DELETE']) #delete account """
+@app.route('/users', methods=['DELETE']) #delete account """
 
-@app.route('/session', method=['POST']) #create new sessio
+@app.route('/session', methods=['POST']) #create new sessio
 def login():
     username = request.form.get(email)
     passwd = request.form.get(passwd)
@@ -43,25 +40,25 @@ def login():
     login_user(user)
     return response(status=200)#json message success
 
-@app.route('/session', method=['DELETE']) #delete session/log out
+@app.route('/session', methods=['DELETE']) #delete session/log out
 def logout():
     logout_user()
     return response(status=200)
 """ 
-@app.route('/video', method=['GET']) #fetch video
+@app.route('/video', methods=['GET']) #fetch video
 
-@app.route('/video', method=['POST']) #upload video
+@app.route('/video', methods=['POST']) #upload video
 
-@app.route('/video', method=['PUT']) #superfluous?
+@app.route('/video', methods=['PUT']) #superfluous?
 
-@app.route('/video', method=['DELETE']) #remove video
+@app.route('/video', methods=['DELETE']) #remove video
 
-@app.route('/calendar', method=['GET']) #get events
+@app.route('/calendar', methods=['GET']) #get events
 
-@app.route('/calendar', method=['POST']) #create event
+@app.route('/calendar', methods=['POST']) #create event
 
-@app.route('/calendar', method=['PUT']) # update event
+@app.route('/calendar', methods=['PUT']) # update event
 
-@app.route('/calendar', method=['DELETE']) #remove event
+@app.route('/calendar', methods=['DELETE']) #remove event
 
  """
