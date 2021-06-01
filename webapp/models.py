@@ -14,8 +14,6 @@ class User(db.Model, UserMixin):
     active = db.Column(db.Boolean, nullable=False, default=False)
     authenticated = db.Column(db.Boolean, nullable=False, default=False)
 
-
-
     def get_id(self):
         userID = self.email
         return userID
@@ -28,6 +26,9 @@ class User(db.Model, UserMixin):
 
     def is_admin(self):
         return self.admin
+
+    def jsonrepr(self):
+        return{"email":self.email, "username":self.username, "authorized_user":self.authorized_user, "video_privilege":self.video_privilege}
 
 """ 
 class Calendar(Model): #kanskje kall "calendarEvent?"

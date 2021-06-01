@@ -15,36 +15,49 @@ template: /*html*/`
             </ul>
         </li>
     </ul>
-    <button @:click="push_changes">push changes</button>
+    <button @click="push_changes">push changes</button>
 `,
 data: function(){
     return{
-        unauthUsers: [{username:"lars", email:"lars"}],
-        users: [{username:"lars", email:"lars", checkedConf:true, checkedLecture:false},{username:"lars2", email:"lars2",  checkedConf:true, checkedLecture:true}],
-    }
-},methods:{
-    push_changes: async function(){
-        /* PUSH CHANGES */
-    },
-    authorize_user: async function(username){
-        /*  */
+        unauthUsers: [],
+        users: [],
+        error:false
     }
 },
-watch:{
+methods:{
+    push_changes: async function(){
+        const allUsers = this.users.concat(this.unauthUsers);
+        let response = await fetch("/users", {
+            method:"PUT",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(allUsers)
+        });
+        this.users = [];
+        this.unauthUsers = [];
+        this.fetch_users()
+        /* PUSH CHANGES + display changes*/
+    },
     fetch_users: async function(){
         let response = await fetch('/users');
         if(response.status === 200){
-            let result = response.json();
+            let result = await response.json();
             for(i=0; i<result.length; i++){
-                if (result[i].authorized === true){
-                    let usr = result[i];
-                    usr["auth"] = false
-                    unauthUsers.push(usr)
+                if (result[i].authorized_user === true){
+                    this.users.push(result[i]);
                 }else{
-                    Users.push(result[i])
+                    this.unauthUsers.push(result[i]);
                 }
             }
-        }
+        }else {}
     }
-}
+},
+mounted(){
+    this.$nextTick(function () {
+        // Code that will run only after the
+        // entire view has been rendered, from vue website
+            this.fetch_users()
+        })
+    }
 }

@@ -1,8 +1,8 @@
 from app import app, db
-from models import User, UnauthUser
+from models import User
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import jsonify, make_response
+from flask import jsonify, make_response, request
 import json
 
 
@@ -12,9 +12,13 @@ def index():
     return app.send_static_file('index.html')
 
 @app.route('/users', methods=['GET']) #get all users
-def return_all_users():
-    usersList = User.query.all()
-    return usersList #flask runs jsonify() automatically on dicts
+def return_all_users(): 
+    usersList = []
+    all_users = User.query.all()
+    for user in all_users: #get all Users
+        x = user.jsonrepr()
+        usersList.append(x)
+    return json.dumps(usersList) #flask runs jsonify() automatically on dicts
     
 
 @app.route('/users', methods=['POST']) #create user
@@ -28,9 +32,20 @@ def create_user():
     response = {'success':False}
     return make_response(jsonify(response, 400))#return json response failed
     
-""" @app.route('/users', methods=['PUT']) #update (authorize user /change privilege/ change pass)
+@app.route('/users', methods=['PUT']) #update (authorize user /change privilege/ change pass)
+def update_privileges():
+    users = json.loads(request.data)
+    try:
+        for jsonUser in users:
+            dbUser = User.query.filter_by(email=jsonUser["email"]).first()
+            dbUser.authorized_user, dbUser.video_privilege = jsonUser["authorized_user"], jsonUser["video_privilege"]
+            db.session.commit()
+        return make_response("success", 201)
+    except:
+        return make_response("success", 400)
 
-@app.route('/users', methods=['DELETE']) #delete account """
+
+"""@app.route('/users', methods=['DELETE']) #delete account """
 
 @app.route('/session', methods=['POST']) #create new session
 def login():
