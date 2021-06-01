@@ -19,6 +19,6 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.filter(User.id == user_id).first()
 
-
+import routes
 
 

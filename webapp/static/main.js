@@ -1,5 +1,3 @@
-
-
 const routes = [
     { path: '/', component: homeC},
     { path: '/home', component: homeC },
@@ -32,8 +30,8 @@ let app = Vue.createApp({
 
 app.component("SidebarC", sidebarC)
 /*app.component("SidebarElementC", sidebarElementC)
-app.component("HeaderC", headerC)
-app.component("LoginC", loginC)*/
+app.component("HeaderC", headerC)*/
+app.component("LoginC", loginC)
 app.component("HomeC", homeC)
 app.component("AdminC", adminC)
 app.component("CalendarC", calendarC)
