@@ -1,10 +1,10 @@
 from flask_login import UserMixin
 import datetime
 from app import db
-from database import Base
+
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    #__tablename__ = 'users'
     email = db.Column(db.String(50), primary_key=True)
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.Text, nullable=False)
@@ -14,15 +14,16 @@ class User(db.Model, UserMixin):
     active = db.Column(db.Boolean, nullable=False, default=False)
     authenticated = db.Column(db.Boolean, nullable=False, default=False)
 
+    def __init__(self, email, username, passwd, **kwargs):
+        super().__init__(**kwargs)
+        self.email = email
+        self.password = passwd
+        self.username = username
+
+
     def get_id(self):
         userID = self.email
         return userID
-
-    def is_authenticated(self):
-        return self.authenticated
-
-    def is_active(self):
-        return self.active
 
     def is_admin(self):
         return self.admin

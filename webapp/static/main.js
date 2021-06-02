@@ -13,17 +13,29 @@ const router = VueRouter.createRouter({
 
 let app = Vue.createApp({
     template: /*html*/`
-        <div class="container-md">
-            <div id="sidebar" class="col-md-4"> 
-                <sidebarC></sidebarC>
+        <main class="container">
+            <div class="row">
+            <div id="sidebar" class="col-sm-2"> 
+            <sidebarC @loggedOut="loggedOut" :auth_level="auth_level"></sidebarC>
             </div>
-            <div id="main" class="col-md-8">
-            må ha bilde av mor. <br>
-            noe tekst, stilisert med boobstrap.
-            <router-view></router-view>
+            <div id="main" class="col-sm-10">
+            <router-view @loggedIn="authLevel" :logout="auth_level[0]"/>
             </div>
-        </div>
-    `
+            
+        </main>
+    `,
+    data:function(){return{
+        'auth_level':[false,false]
+    }},
+    methods:{
+        authLevel: function(level){
+            this.auth_level = level
+        },
+        loggedOut: function(){
+            this.auth_level = [false,false]
+
+        }
+    }
 });
 
 app.component("SidebarC", sidebarC)

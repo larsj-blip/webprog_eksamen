@@ -2,11 +2,11 @@ const adminC = {
 template: /*html*/`
     <h2>unauthorized users</h2>
     <ul>
-        <li v-for="user in unauthUsers">{{user.username}} {{user.email}} authorize user <input type="checkbox" v-model="user.auth"> </li>
+        <li v-for="user in unauthUsers">{{user.username}} {{user.email}} authorize user <input type="checkbox" v-model="user.authorized_user"> </li>
     </ul>
     <h2>Authorized users</h2>
     <ul>
-        <li v-for="user in users">{{user.username}} {{user.email}} >
+        <li v-for="user in users">{{user.username}} {{user.email}} 
             <ul>
                 <form>
                     <li> <input type="checkbox" name="auth_lect" v-model="user.checkedLecture">lecture privileges</li>
@@ -34,10 +34,16 @@ methods:{
             },
             body: JSON.stringify(allUsers)
         });
-        this.users = [];
+        if (response.status === 200){
+        /* this.users = [];
         this.unauthUsers = [];
-        this.fetch_users()
-        /* PUSH CHANGES + display changes*/
+        this.fetch_users() */
+        } else {
+            this.error = true;
+            this.users = [];
+            this.unauthUsers = [];
+            this.fetch_users();/* PUSH CHANGES + display changes*/
+        }
     },
     fetch_users: async function(){
         let response = await fetch('/users');
@@ -50,7 +56,11 @@ methods:{
                     this.unauthUsers.push(result[i]);
                 }
             }
-        }else {}
+        }else {
+            this.error = true;
+            this.users = [];
+            this.unauthUsers = [];
+        }
     }
 },
 mounted(){
