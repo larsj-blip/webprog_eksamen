@@ -1,5 +1,5 @@
 const homeC = {
     template: /*html*/`
-        <p>dette er hjemmesiden</p>
+        <p>hjem med bilde av mor :)</p>
     `
 }

@@ -1,22 +1,23 @@
 const adminC = {
 template: /*html*/`
-    <h2>unauthorized users</h2>
+    <h2>{{lang.admin[0]}}</h2>
     <ul>
-        <li v-for="user in unauthUsers">{{user.username}} {{user.email}} authorize user <input type="checkbox" v-model="user.authorized_user"> </li>
+        <li v-for="user in unauthUsers">{{user.username}} {{user.email}} {{lang.admin[1]}} <input type="checkbox" v-model="user.authorized_user"> </li>
     </ul>
-    <h2>Authorized users</h2>
+    <h2>{{lang.admin[2]}}</h2>
     <ul>
         <li v-for="user in users">{{user.username}} {{user.email}} 
             <ul>
-                <form>
-                    <li> <input type="checkbox" name="auth_lect" v-model="user.checkedLecture">lecture privileges</li>
-                    <li> <input type="checkbox" name="auth_conf" v-model="user.checkedConf">conference privileges</li>
-                </form>
+                <div>
+                    <li> <input type="checkbox" name="auth_lect" v-model="user.checkedLecture">{{lang.admin[3]}}</li>
+                    <li> <input type="checkbox" name="auth_conf" v-model="user.checkedConf">{{lang.admin[4]}}</li>
+                </div>
             </ul>
         </li>
     </ul>
-    <button @click="push_changes">push changes</button>
+    <button @click="push_changes">{{lang.admin[5]}}</button>
 `,
+props:['lang'],
 data: function(){
     return{
         unauthUsers: [],

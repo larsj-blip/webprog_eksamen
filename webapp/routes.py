@@ -42,13 +42,16 @@ def create_user():
 @login_required
 def update_privileges():
     print(current_user.is_authenticated)
-    if current_user.is_authenticated and current_user.is_admin():
+    if current_user.is_admin():
         users = json.loads(request.data)
+        print(users)
         try:
             for jsonUser in users:
                 dbUser = User.query.filter_by(email=jsonUser["email"]).first()
+                print(dbUser, dbUser.authorized_user)
                 dbUser.authorized_user, dbUser.video_privilege = jsonUser["authorized_user"], jsonUser["video_privilege"]
                 db.session.commit()
+                print(dbUser.authorized_user)
             return make_response("success", 201)
         except:
             return make_response("failure", 400)
@@ -73,10 +76,12 @@ def logout():
     current_user.authenticated = False
     logout_user()
     return make_response("u logged out as hell", 200)
-""" 
-@app.route('/video', methods=['GET']) #fetch video
-
-@app.route('/video', methods=['POST']) #upload video
+ 
+""" @app.route('/videos/<num>', methods=['GET']) #fetch video
+def get_video():
+    return """
+"""
+@app.route('/videos', methods=['POST']) #upload video
 
 @app.route('/video', methods=['PUT']) #superfluous?
 

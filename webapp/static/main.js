@@ -2,6 +2,7 @@ const routes = [
     { path: '/', component: homeC},
     { path: '/Calendar', component: calendarC },
     { path: '/Admin', component: adminC },
+    { path: '/Video', component: videoC },
     { path: '/Login', component: loginC }
 ];
 
@@ -15,32 +16,39 @@ let app = Vue.createApp({
     template: /*html*/`
         <main class="container">
             <div class="row">
-            <div id="sidebar" class="col-sm-2"> 
-            <sidebarC @loggedOut="loggedOut" :auth_level="auth_level"></sidebarC>
+            <navbarC @loggedOut="loggedOut" :auth_level="auth_level" :lang="lang"></navbarC>
             </div>
-            <div id="main" class="col-sm-10">
-            <router-view @loggedIn="authLevel" :logout="auth_level[0]"/>
+            <div id="main" >
+            <router-view class="col-sm-10" @loggedIn="authLevel" :logout="auth_level[0]" :lang="lang"/>
             </div>
             
         </main>
     `,
     data:function(){return{
-        'auth_level':[false,false]
+        'auth_level':[false,false],
+        'lang':[]
     }},
     methods:{
         authLevel: function(level){
-            this.auth_level = level
+            this.auth_level = level;
         },
         loggedOut: function(){
-            this.auth_level = [false,false]
-
+            this.auth_level = [false,false];
+        },
+        setLanguage: function(langInput){
+            console.log(language[langInput]);
+            this.lang = language[langInput];
         }
+    },
+    created(){
+        this.setLanguage("en");
     }
 });
 
-app.component("SidebarC", sidebarC)
-/*app.component("SidebarElementC", sidebarElementC)
+app.component("NavbarC", navbarC)
+/*app.component("navbarElementC", navbarElementC)
 app.component("HeaderC", headerC)*/
+app.component("VideoC", videoC)
 app.component("LoginC", loginC)
 app.component("HomeC", homeC)
 app.component("AdminC", adminC)

@@ -1,6 +1,28 @@
 const calendarC = {
-    props: ["user"],
+    props: ['lang'],
     template: /*html*/`
-        <p>This is the mothafuckin calendar </p>
-        `
+        <button @click="requestAppointment">request appointment</button>
+        `,
+    data: function(){
+        return{
+            'error':false,
+            'success':false
+        }
+    },
+    methods:{
+        requestAppointment: async function(){
+            let response = await fetch("/calendar", {
+                method:"POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                }
+            });
+            if(response.status === 200){
+                this.error = false
+                this.success = true
+            }else{
+                this.error = true
+            }
+        }
+    }
 }

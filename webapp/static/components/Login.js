@@ -2,20 +2,20 @@
 const loginC = {
     template: /*html*/`
     <div>
-        <label for="email">email</label>
+        <label for="email">{{ lang.login[0] }}</label>
         <input v-model="email" type="email" id="email">
-        <label for="passwd">password</label>
-        <input v-model="password" type="password" id="passwd"/>
-        <button v-if="!register_usr" @click="log_in">submit</button>
+        <label for="passwd">{{ lang.login[1]}}</label>
+        <input v-model="password" type="password" id="passwd" @keyup.enter="log_in"/>
+        <button v-if="!register_usr" @click="log_in">{{lang.login[2]}}</button>
     </div>
     <div v-if="register_usr">
-        <label for="username">full name</label>
+        <label for="username">{{lang.login[3]}}</label>
         <input v-model="username" type="text" id="username"/>
-        <button @click="register">register</button>
+        <button @click="register">{{lang.login[4]}}</button>
     </div>
-    <button v-if="!register_usr" @click="show_register">Don't have a user? Click here to register!</button>
+    <button v-if="!register_usr" @click="show_register">{{lang.login[5]}}</button>
     `,
-    props:['logout'],
+    props:['logout', 'lang'],
     emits:['loggedIn'],
     data: function(){
         return{

@@ -11,8 +11,8 @@ class User(db.Model, UserMixin):
     authorized_user = db.Column(db.Boolean, nullable=False, default=False)
     video_privilege = db.Column(db.Integer, nullable=True, default=0)
     admin = db.Column(db.Boolean, nullable=False, default=False)
-    active = db.Column(db.Boolean, nullable=False, default=False)
-    authenticated = db.Column(db.Boolean, nullable=False, default=False)
+    """ active = db.Column(db.Boolean, nullable=False, default=False)
+    authenticated = db.Column(db.Boolean, nullable=False, default=False) """
 
     def __init__(self, email, username, passwd, **kwargs):
         super().__init__(**kwargs)

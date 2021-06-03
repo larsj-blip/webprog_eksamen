@@ -1,5 +1,25 @@
 referer til https://flask.palletsprojects.com/en/1.1.x/patterns/sqlalchemy/ (?)bruker en in memory database
 https://www.patricksoftwareblog.com/unit-testing-a-flask-application/ ? testing
+
+how to run:
+
+lag env med python -m venv env
+
+aktiver env, installer fra requirements.txt med pip install -r requirements.txt
+
+cd inn i webapp, åpne python konsoll
+
+skriv:
+> from app import db
+> db.create_all()
+> db.session.commit()
+> exit()
+
+så i terminal: 
+
+export FLASK_APP="app.py"
+flask run
+
 # Exam project
 
 - [Exam project](#exam-project)
