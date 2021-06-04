@@ -1,15 +1,30 @@
-const videoC = {
-    template: /*html*/`
-        <video width="720" controls>
-        <source src="/videos" type="video/mp4">
-        </video>
+let videoC = {
+    template:/*html*/`
+        <videoCompC></videoCompC>
     `,
     data(){
         return{
-            'video_url':""
+            lectureList:[],
+            conferenceList:[],
+            error:false
         }
-    }
-}
-
-
-/* :src="video_url" */
+    },
+    methods:{
+        fetch_vids: async function(){
+            let response = await fetch("/videos");
+            if(response.status === 200){
+                let result = await response.json()
+                this.lectureList = result.lectures;
+                this.conferenceList = result.conferences;
+            }else{
+                this.error = true
+            }
+        }
+    },
+    mounted(){
+        this.$nextTick(function () {
+            // Code that will run only after the
+            // entire view has been rendered, from vue website
+                this.fetch_vids()
+            })
+        }}

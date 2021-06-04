@@ -31,17 +31,20 @@ class User(db.Model, UserMixin):
     def jsonrepr(self):
         return{"email":self.email, "username":self.username, "authorized_user":self.authorized_user, "video_privilege":self.video_privilege}
 
+class Video(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    path = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(11), nullable=False)
+
+
+
+
 """ 
 class Calendar(Model): #kanskje kall "calendarEvent?"
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(DateTime, nullable=False)
     user_id = db.Column(db.Integer, nullable=False)
     #foreign key, må vel ikke være pk?
+"""
 
 
-
-class VideoCat(Model):
-    id = db.Column(db.Integer, primary_key=True)
-    path = db.Column(db.String(50), nullable=False)
-    
-     """

@@ -16,7 +16,7 @@ let app = Vue.createApp({
     template: /*html*/`
         <main class="container">
             <div class="row">
-            <navbarC @loggedOut="loggedOut" :auth_level="auth_level" :lang="lang"></navbarC>
+            <navbarC @loggedOut="loggedOut" @languageChanged="setLanguage" :auth_level="auth_level" :lang="lang"/>
             </div>
             <div id="main" >
             <router-view class="col-sm-10" @loggedIn="authLevel" :logout="auth_level[0]" :lang="lang"/>
@@ -49,6 +49,7 @@ app.component("NavbarC", navbarC)
 /*app.component("navbarElementC", navbarElementC)
 app.component("HeaderC", headerC)*/
 app.component("VideoC", videoC)
+app.component("VideoCompC", videoCompC)
 app.component("LoginC", loginC)
 app.component("HomeC", homeC)
 app.component("AdminC", adminC)

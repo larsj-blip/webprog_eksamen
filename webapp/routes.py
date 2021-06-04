@@ -1,8 +1,8 @@
 from app import app, db
-from models import User
+from models import User, Video
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import jsonify, make_response, request
+from flask import jsonify, make_response, request, send_from_directory
 from flask_login import login_required, login_user, current_user, logout_user
 import json
 
@@ -76,12 +76,26 @@ def logout():
     current_user.authenticated = False
     logout_user()
     return make_response("u logged out as hell", 200)
+
+@app.route('/videos')
+def get_video_list():
+    vid_list = Video.query.all()
+    return make_response(jsonify({'videos':vid_list}))
  
-""" @app.route('/videos/<num>', methods=['GET']) #fetch video
-def get_video():
-    return """
+@app.route('/videos/lectures', methods=['GET']) #fetch video
+@login_required
+def get_lecture():
+    #sjekk bruker.tilgang
+    return(send_from_directory(directory="/videos", filename="hippofart.mp4", as_attachment=False, cache_timeout=0))
+
+@app.route('/videos/conferences/<path:conference>', methods=['GET']) #fetch video
+@login_required
+def get_conference():
+    #sjekk bruker.tilgang
+    return(send_from_directory(directory="/videos", filename="hippofart.mp4", as_attachment=False, cache_timeout=0))
+
 """
-@app.route('/videos', methods=['POST']) #upload video
+@app.route('/videos', methods=['POST']) #upload video??
 
 @app.route('/video', methods=['PUT']) #superfluous?
 
