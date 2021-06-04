@@ -167,6 +167,9 @@ def get_appointments():
         return make_response("error",400)
 
 
+@app.route('/images/bg')
+def get_image():
+    return send_from_directory(directory="", filename="static/images/ellen_bg.png")
 """
 @app.route('/videos', methods=['POST']) #upload video??
 

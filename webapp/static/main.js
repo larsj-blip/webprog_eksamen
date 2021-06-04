@@ -15,13 +15,16 @@ const router = VueRouter.createRouter({
 let app = Vue.createApp({
     template: /*html*/`
         <main class="container">
-            <div class="row">
+        <div class="row">
             <navbar-c @loggedOut="loggedOut" @languageChanged="setLanguage" :auth_level="auth_level" :lang="lang"/>
-            </div>
+        </div>
+        <div class="bg-image"
+            style="background-image: url('/images/bg');
+                height: 100vh;">
             <div id="main" >
             <router-view class="col-sm-10" @loggedIn="authLevel" :logout="auth_level[0]" :lang="lang"/>
             </div>
-            
+            </div>
         </main>
     `,
     data:function(){return{

@@ -3,6 +3,7 @@ const navbarC = {
         <!-- linker til div. sider i applikasjonen, dropdown til videoer? -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
+            <div class="navbar-brand" href="#">OtoRhinoLaryngology</div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
               <span class="navbar-toggler-icon"></span> <!-- låner alt fra bootstrap nettsiden-->
             </button>
