@@ -1,6 +1,9 @@
 const calendarC = {
     props: ['lang'],
     template: /*html*/`
+        <div v-if="success" class="alert alert-success" role="alert">appointment requested!</div>
+        <div v-if="error" class="alert alert-danger" role="alert">There was an error trying to load/push to server!</div>
+        <h2>appointments</h2>
         <table class="table"> 
         <thead>
           <tr>
@@ -24,6 +27,8 @@ const calendarC = {
     },
     methods:{
         requestAppointment: async function(){
+            this.error = false
+            this.success = false
             let response = await fetch("/calendar", {
                 method:"POST",
                 headers: {

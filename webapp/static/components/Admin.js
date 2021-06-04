@@ -1,6 +1,6 @@
 const adminC = {
 template: /*html*/`
-    <h2>{{lang.admin[0]}}</h2>
+    <h2>{{lang.admin[0]}}</h2>  /* lang.admin er liste med ord for å kunne tilby lokalisering av nettsiden. ikke elegant, men det funker */
     <div v-if="!appointmentvar">
     <ul>
         <li v-for="user in unauthUsers">{{user.username}} {{user.email}} {{lang.admin[1]}} <input type="checkbox" v-model="user.authorized_user"> </li>
@@ -39,11 +39,11 @@ data: function(){
 },
 methods:{
     push_changes_auth: async function(){
-        const allUsers = this.users.concat(this.unauthUsers);
+        const allUsers = this.users.concat(this.unauthUsers); /* legge sammen listene med brukere */
         for(i=0;i<allUsers.length;i++){
-            allUsers[i].video_privilege = [allUsers[i].checkedLecture, allUsers[i].checkedConf];
-        }
-        let response = await fetch("/users", {
+            allUsers[i].video_privilege = [allUsers[i].checkedLecture, allUsers[i].checkedConf]; /* gjøre video_privilege om til bool liste */
+        }                                                                                           /* regner med de som om de var binærtall for  */
+        let response = await fetch("/users", {                                                      /* å få en int på server siden */
             method:"PUT",
             headers: {
                 "Content-Type" : "application/json"
@@ -53,12 +53,12 @@ methods:{
         if (response.status === 200){
             this.users = [];
             this.unauthUsers = [];
-            this.fetch_users();
+            this.fetch_users(); /* henter endringer etter å ha sendt til server for å vise endringer */
         } else {
             this.error = true;
             this.users = [];
             this.unauthUsers = [];
-            this.fetch_users();/* PUSH CHANGES + display changes*/
+            this.fetch_users();
         }
     },
     push_changes_calendar: async function(){
@@ -73,7 +73,7 @@ methods:{
         if(response.status===200){
             console.log("hoooray")
         }else{
-            console.log("boooo")
+            console.log("boo")
         }
     },
     fetch_users: async function(){
@@ -82,7 +82,7 @@ methods:{
             let result = await response.json();
             for(i=0; i<result.length; i++){
                 if (result[i].authorized_user === true){
-                    result[i].checkedLecture = Boolean(result[i].video_privilege & 1);
+                    result[i].checkedLecture = Boolean(result[i].video_privilege & 1); /* bruker bitwise ANDing for å gjøre om int video_privilege til bool */
                     result[i].checkedConf = Boolean(result[i].video_privilege & 2);
                     this.users.push(result[i]);
                 }else{
