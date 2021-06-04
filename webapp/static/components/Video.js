@@ -1,12 +1,15 @@
-let videoC = {
+const videoC = {
     template:/*html*/`
+        <div v-if="!buttclick">
         <ul>
-          <li v-for="lecture in lectureList"> {{ lecture.path }} <button @click="clik(lecture.path, 'lecture')"> play video</button> </li>
+          <li v-for="lecture in lectureList"> {{ lecture.path }} <button @click="clik(lecture.path, 'lectures')"> play video</button> </li>
         </ul>
         <ul>
-          <li v-for="conference in conferenceList"> {{ conference.path }} </li>
-        </ul>        
-        <videoCompC v-if="buttclick" :path="vidpath" @exit="this.buttclick = false"/>
+          <li v-for="conference in conferenceList"> {{ conference.path }} 
+          <button @click="clik(conference.path, 'conferences')"> play video</button> </li>
+        </ul> 
+        </div>
+        <video-comp-c v-if="buttclick" :path="vidpath" @exit="this.buttclick = false"/>
     `,
     data(){
         return{
@@ -29,16 +32,10 @@ let videoC = {
             }
         },
         clik: function(file, cat){
-            console.log("hellooo")
-            let path = ""
-            if (cat==="lecture"){
-                path = "videos/lectures/"
-            }else{
-                path = "videos/conferences/"
-            }
-            this.vidpath = path.concat(file);
+            console.log("hellooo");
+            let path = "videos/" + cat;
+            this.vidpath = path + "/" + file;
             this.buttclick = true;
-
         }
     },
     mounted(){

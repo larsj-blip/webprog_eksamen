@@ -18,7 +18,7 @@ const navbarC = {
                 <router-link class="nav-link" v-if="auth_level[1]" to="/Admin"> {{ lang.navbar[2] }} </router-link>
               </li>  
               <li class="nav-item">
-                <router-link class="nav-link" to="/Video">{{ lang.navbar[5]  }}</router-link>
+                <router-link class="nav-link" v-if="auth_level[0]" to="/Video">{{ lang.navbar[5]  }}</router-link>
               </li> 
             </ul>
               <div class="d-flex">    

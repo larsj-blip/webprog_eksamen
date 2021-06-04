@@ -9,6 +9,7 @@ const videoCompC = {
     props:['path'],
     methods: {
         exit: function(){
+            console.log(this.path)
             this.$emit("exit")
         }
     }
