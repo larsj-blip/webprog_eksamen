@@ -13,18 +13,18 @@ template: /*html*/`
                 <div>
                     <li> <input type="checkbox" name="auth_lect" v-model="user.checkedLecture">{{lang.admin[3]}}</li>
                     <li> <input type="checkbox" name="auth_conf" v-model="user.checkedConf">{{lang.admin[4]}}</li>
-                    <button @click="appointment(user.email)">schedule appointment</button>
+                    <button @click="appointment(user.email)">{{lang.admin[5]}}</button>
                 </div>
             </ul>
         </li>
     </ul>
-    <button @click="push_changes_auth">{{lang.admin[5]}}</button>
+    <button @click="push_changes_auth">{{lang.admin[6]}}</button>
     </div>
     <div v-if="appointmentvar">
-        appointment date for {{ calendarinfo[0] }}
-        date<input type="date" v-model="calendarinfo[1]" />
-        time<input type="time" placeholder="hh:mm" v-model="calendarinfo[2]" />
-        <button @click="push_changes_calendar">schedule appointment</button>
+        {{lang.admin[7]}} {{ calendarinfo[0] }}
+        {{lang.admin[8]}}<input type="date" v-model="calendarinfo[1]" />
+        {{lang.admin[9]}}<input type="time" placeholder="hh:mm" v-model="calendarinfo[2]" />
+        <button @click="push_changes_calendar">{{lang.admin[10]}}t</button>
     </div>
     </div>
 `,

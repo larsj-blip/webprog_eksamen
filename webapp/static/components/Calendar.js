@@ -1,13 +1,13 @@
 const calendarC = {
     props: ['lang'],
     template: /*html*/`
-        <div v-if="success" class="alert alert-success" role="alert">appointment requested!</div>
-        <div v-if="error" class="alert alert-danger" role="alert">There was an error trying to load/push to server!</div>
-        <h2>appointments</h2>
+        <div v-if="success" class="alert alert-success" role="alert">{{lang.calendar[0]}}</div>
+        <div v-if="error" class="alert alert-danger" role="alert">{{lang.calendar[1]}}</div>
+        <h2>{{lang.calendar[3]}}</h2>
         <table class="table"> 
         <thead>
           <tr>
-            <th scope="col">Dato</th>
+            <th scope="col">{{lang.calendar[4]}}</th>
           </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@ const calendarC = {
           </tr>
         </tbody>
         </table>
-        <button class="btn btn-primary" @click="requestAppointment">request appointment</button>
+        <button class="btn btn-primary" @click="requestAppointment">{{lang.calendar[5]}}</button>
         `,
     data: function(){
         return{

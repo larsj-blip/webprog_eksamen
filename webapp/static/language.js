@@ -1,8 +1,10 @@
 language = {"en":{"admin":["unauthorized users","authorize user", "authorized users", "lecture privileges", "conference privileges", "confirm changes"],
-     "calendar":"","home":"", 
+     "calendar":["Appointment requested", "There was an error trying to load/push to server!", "Appointments", "Cancel appointment", "Date", "Time", "Book new appointment", "Edit appointment"],
+     "home":"", 
      "login":["email", "password", "submit", "full name","register", "don't have a user? Click here to register" ],
      "navbar":["home", "calendar", "administrate users", "log in", "log out", "videos"]},
 "no":{"admin":["uautoriserte brukere", "autoriser bruker","autoriserte brukere", "tilgang til forelesninger", "tilgang til konferanser", "bekreft endringer"],
-    "calendar":"","home":"", 
+    "calendar":["Avtale forespurt", "Det skjedde en feil under opp/nedlasting av data til server", "Avtaler",  "Kanseller avtale", "Dato", "Tid", "Book ny avtale", "Endre avtale"],
+    "home":"", 
     "login":["email", "passord", "logg inn", "fornavn og etternavn", "registrer bruker"],
     "navbar":["hjem", "kalender", "administrer brukere", "logg inn", "logg ut", "videoer"]}} /* lokalisering ved hjelp av disse filene */

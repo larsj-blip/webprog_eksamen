@@ -2,11 +2,11 @@ const videoC = {
     template:/*html*/`
         <div v-if="!buttclick">
         <ul>
-          <li v-for="lecture in lectureList"> {{ lecture.path }} <button @click="clik(lecture.path, 'lectures')"> play video</button> </li>
+          <li v-for="lecture in lectureList"> {{ lecture.path }} <button @click="clik(lecture.path, 'lectures')"> play</button> </li>
         </ul>
         <ul>
           <li v-for="conference in conferenceList"> {{ conference.path }} 
-          <button @click="clik(conference.path, 'conferences')"> play video</button> </li>
+          <button @click="clik(conference.path, 'conferences')"> play</button> </li>
         </ul> 
         </div>
         <video-comp-c v-if="buttclick" :path="vidpath" @exit="this.buttclick = false"/>
