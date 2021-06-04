@@ -70,7 +70,7 @@ def login():
     data = json.loads(request.data)
     user = User.query.filter_by(email=data["email"]).first()
     if not user or not check_password_hash(user.password, data["passwd"]):
-        return make_response("failure", 400) #send server error code
+        return make_response("", 404) #send server error code
     user.authenticated = True
     login_user(user)
     return make_response(jsonify({'is_admin':user.is_admin()}), 200)#server success code

@@ -4,7 +4,7 @@ const navbarC = {
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-              <span class="navbar-toggler-icon"></span> <!-- navbar ikon funker ikke, låner alt fra bootstrap nettsiden-->
+              <span class="navbar-toggler-icon"></span> <!-- låner alt fra bootstrap nettsiden-->
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
