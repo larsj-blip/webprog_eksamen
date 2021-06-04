@@ -5,4 +5,4 @@ language = {"en":{"admin":["unauthorized users","authorize user", "authorized us
 "no":{"admin":["uautoriserte brukere", "autoriser bruker","autoriserte brukere", "tilgang til forelesninger", "tilgang til konferanser", "bekreft endringer"],
     "calendar":"","home":"", 
     "login":["email", "passord", "logg inn", "fornavn og etternavn", "registrer bruker"],
-    "navbar":["hjem", "kalender", "administrer brukere", "logg inn", "logg ut", "videoer"]}}
+    "navbar":["hjem", "kalender", "administrer brukere", "logg inn", "logg ut", "videoer"]}} /* lokalisering ved hjelp av disse filene */

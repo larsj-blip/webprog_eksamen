@@ -16,7 +16,7 @@ const calendarC = {
           </tr>
         </tbody>
         </table>
-        <button @click="requestAppointment">request appointment</button>
+        <button class="btn btn-primary" @click="requestAppointment">request appointment</button>
         `,
     data: function(){
         return{

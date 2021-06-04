@@ -1,6 +1,7 @@
 const adminC = {
 template: /*html*/`
-    <h2>{{lang.admin[0]}}</h2>  /* lang.admin er liste med ord for å kunne tilby lokalisering av nettsiden. ikke elegant, men det funker */
+    <div class="bg-white">
+    <h2>{{lang.admin[0]}}</h2>  
     <div v-if="!appointmentvar">
     <ul>
         <li v-for="user in unauthUsers">{{user.username}} {{user.email}} {{lang.admin[1]}} <input type="checkbox" v-model="user.authorized_user"> </li>
@@ -25,7 +26,7 @@ template: /*html*/`
         time<input type="time" placeholder="hh:mm" v-model="calendarinfo[2]" />
         <button @click="push_changes_calendar">schedule appointment</button>
     </div>
-    
+    </div>
 `,
 props:['lang'],
 data: function(){
