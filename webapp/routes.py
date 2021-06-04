@@ -79,16 +79,25 @@ def logout():
 
 @app.route('/videos')
 def get_video_list():
+    lectures = []
+    conferences = []
     vid_list = Video.query.all()
-    return make_response(jsonify({'videos':vid_list}))
+    for vid in vid_list:
+        if vid.category == "lecture":
+            lectures.append(vid.jsonrepr())
+        else:
+            conferences.append(vid.jsonrepr())
+    return make_response(jsonify({'lectures':lectures, 'conferences':conferences}), 200)
  
-@app.route('/videos/lectures', methods=['GET']) #fetch video
+@app.route('/videos/lectures/<lecture>') #fetch video
 @login_required
-def get_lecture():
+def get_lecture(lecture):
+    if current_user.video_privilege == 1 or current_user.video_privilege == 3:
     #sjekk bruker.tilgang
-    return(send_from_directory(directory="/videos", filename="hippofart.mp4", as_attachment=False, cache_timeout=0))
+        pathname = "videos/lectures".join(lecture)
+        return(send_from_directory(directory="", filename=pathname, as_attachment=False, cache_timeout=0))
 
-@app.route('/videos/conferences/<path:conference>', methods=['GET']) #fetch video
+@app.route('/videos/conferences/<filename>', methods=['GET']) #fetch video
 @login_required
 def get_conference():
     #sjekk bruker.tilgang

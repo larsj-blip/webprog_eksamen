@@ -1,11 +1,17 @@
 const videoCompC = {
     template: /*html*/`
-        <video width="720" controls>
-        <source :src="path" type="video/mp4">
+        <button @click="exit"> exit </button>
+        {{ path }}
+        <video width="720" controls :src="path">
         Video doesn't exist/server error, or you do not have permission to access resource.
         </video>
     `,
-    props:['path']
+    props:['path'],
+    methods: {
+        exit: function(){
+            this.$emit("exit")
+        }
+    }
 }
 
 
@@ -21,4 +27,8 @@ const videoCompC = {
              let response = await fetch(this.path);
              
         }
-    } */
+    } 
+    
+            <source :src="path", type="video/mp4">
+
+    */

@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.Text, nullable=False)
     authorized_user = db.Column(db.Boolean, nullable=False, default=False)
-    video_privilege = db.Column(db.Integer, nullable=True, default=0)
+    video_privilege = db.Column(db.Integer, nullable=True, default=0) #binært: conferences - lectures
     admin = db.Column(db.Boolean, nullable=False, default=False)
     """ active = db.Column(db.Boolean, nullable=False, default=False)
     authenticated = db.Column(db.Boolean, nullable=False, default=False) """
@@ -36,7 +36,8 @@ class Video(db.Model):
     path = db.Column(db.String(50), nullable=False)
     category = db.Column(db.String(11), nullable=False)
 
-
+    def jsonrepr(self): 
+        return{'path':self.path, 'category':self.category}
 
 
 """ 

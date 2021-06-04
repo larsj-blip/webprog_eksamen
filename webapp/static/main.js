@@ -36,7 +36,6 @@ let app = Vue.createApp({
             this.auth_level = [false,false];
         },
         setLanguage: function(langInput){
-            console.log(language[langInput]);
             this.lang = language[langInput];
         }
     },
