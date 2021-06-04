@@ -1,6 +1,6 @@
 referer til https://flask.palletsprojects.com/en/1.1.x/patterns/sqlalchemy/ (?)bruker en in memory database
 https://www.patricksoftwareblog.com/unit-testing-a-flask-application/ ? testing
-
+https://pythonguides.com/convert-a-string-to-datetime-in-python/ convertere streng til datetime
 how to run:
 
 lag env med python -m venv env

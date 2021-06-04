@@ -16,7 +16,7 @@ let app = Vue.createApp({
     template: /*html*/`
         <main class="container">
             <div class="row">
-            <navbarC @loggedOut="loggedOut" @languageChanged="setLanguage" :auth_level="auth_level" :lang="lang"/>
+            <navbar-c @loggedOut="loggedOut" @languageChanged="setLanguage" :auth_level="auth_level" :lang="lang"/>
             </div>
             <div id="main" >
             <router-view class="col-sm-10" @loggedIn="authLevel" :logout="auth_level[0]" :lang="lang"/>
